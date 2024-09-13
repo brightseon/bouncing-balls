@@ -1,6 +1,5 @@
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
-const radius = 25;
 
 const randomNumber = (min, max) => {
     return Math.floor(Math.random() * max) + min;
@@ -20,6 +19,14 @@ const getRandomY = () => {
     return randomNumber(min, max);
 };
 
+const getRandomRadius = () => {
+    const min = 10;
+    const max = 50;
+
+    return randomNumber(min, max);
+};
+
+const radius = getRandomRadius();
 let x = getRandomX();
 let y = getRandomY();
 let dx = Math.floor(radius / 2);
