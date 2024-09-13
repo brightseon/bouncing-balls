@@ -26,11 +26,18 @@ const getRandomRadius = () => {
     return getRandomNumber(min, max);
 };
 
+const getRandomVelocity = () => {
+    const min = 0.1;
+    const max = 1;
+
+    return Math.random() * (max - min) + min;
+};
+
 const radius = getRandomRadius();
 let x = getRandomX();
 let y = getRandomY();
-let dx = Math.floor(radius / 2);
-let dy = Math.floor(radius / 2);
+let dx = Math.floor(radius / 2) * getRandomVelocity();
+let dy = Math.floor(radius / 2) * getRandomVelocity();
 
 const drawBall = () => {
     const color = 'green';
