@@ -2,7 +2,7 @@ const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
 const getRandomNumber = (min, max) => {
-    return Math.floor(Math.random() * max) + min;
+    return Math.floor(Math.random() * (max - min)) + min;
 };
 
 const getRandomX = () => {
