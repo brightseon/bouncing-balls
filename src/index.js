@@ -64,8 +64,8 @@ const getRandomRadius = () => {
 };
 
 const getRandomVelocity = () => {
-    const min = 0.1;
-    const max = 1;
+    const min = 0.05;
+    const max = 0.5;
 
     return Math.random() * (max - min) + min;
 };
