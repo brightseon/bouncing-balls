@@ -31,6 +31,7 @@ const BALL_COLORS = {
     BROWN_ORANGE: '#E59866',
 };
 const BALL_COUNT = 50;
+const BALL_UPDATE_INTERVAL = 1000;
 
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
@@ -166,7 +167,7 @@ const updateCanvasSize = () => {
 const init = () => {
     initBalls();
     requestAnimationFrame(drawBalls);
-    setInterval(replaceBall, 1000);
+    setInterval(replaceBall, BALL_UPDATE_INTERVAL);
 };
 
 updateCanvasSize();
