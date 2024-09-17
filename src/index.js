@@ -137,6 +137,14 @@ const createAndAddBall = () => {
     balls.push(ball);
 };
 
+const replaceBall = () => {
+    if (balls.length > 0) {
+        balls.splice(0, 1);
+    }
+
+    createAndAddBall();
+};
+
 const initBalls = () => {
     for (let i = 0; i < BALL_COUNT; i++) {
         createAndAddBall();
@@ -158,6 +166,7 @@ const updateCanvasSize = () => {
 const init = () => {
     initBalls();
     requestAnimationFrame(drawBalls);
+    setInterval(replaceBall, 1000);
 };
 
 updateCanvasSize();
