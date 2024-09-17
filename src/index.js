@@ -1,3 +1,21 @@
+const BALL_COLORS = {
+    RED: '#E74C3C',
+    ORANGE_LIGHT: '#F39C12',
+    YELLOW: '#F1C40F',
+    GREEN_LIGHT: '#2ECC71',
+    GREEN_DARK: '#1F8A70',
+    BLUE_LIGHT: '#3498DB',
+    PURPLE: '#9B59B6',
+    ORANGE: '#E67E22',
+    GRAY_LIGHT: '#ECF0F1',
+    GRAY_MID: '#95A5A6',
+    ORANGE_BRIGHT: '#D35400',
+    GRAY_LIGHTER: '#BDC3C7',
+    GRAY_DARK: '#7F8C8D',
+    RED_DARK: '#C0392B',
+    TEAL: '#16A085',
+};
+
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
@@ -33,15 +51,20 @@ const getRandomVelocity = () => {
     return Math.random() * (max - min) + min;
 };
 
+const getRandomColor = () => {
+    const idx = getRandomNumber(0, Object.keys(BALL_COLORS).length);
+
+    return Object.values(BALL_COLORS)[idx];
+};
+
 const radius = getRandomRadius();
 let x = getRandomX();
 let y = getRandomY();
 let dx = Math.floor(radius / 2) * getRandomVelocity();
 let dy = Math.floor(radius / 2) * getRandomVelocity();
+const color = getRandomColor();
 
 const drawBall = () => {
-    const color = 'green';
-
     ctx.beginPath();
     ctx.arc(x, y, radius, 0, 2 * Math.PI);
     ctx.fillStyle = color;
