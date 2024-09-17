@@ -31,7 +31,7 @@ const BALL_COLORS = {
     BROWN_ORANGE: '#E59866',
 };
 const BALL_COUNT = 50;
-const BALL_UPDATE_INTERVAL = 1000;
+const BALL_UPDATE_INTERVAL = 3000;
 
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
