@@ -36,6 +36,7 @@ const BALL_UPDATE_INTERVAL = 1000;
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 const balls = [];
+let currentIdx = 0;
 
 const getRandomNumber = (min, max) => {
     return Math.floor(Math.random() * (max - min)) + min;
@@ -145,11 +146,14 @@ const createAndAddBall = () => {
 };
 
 const replaceBall = () => {
-    if (balls.length > 0) {
-        balls.splice(0, 1);
+    if (balls.length < BALL_COUNT) {
+        createAndAddBall();
+
+        return;
     }
 
-    createAndAddBall();
+    balls[currentIdx] = createBall();
+    currentIdx = (currentIdx + 1) % 50;
 };
 
 const initBalls = () => {
