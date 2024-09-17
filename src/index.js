@@ -88,6 +88,23 @@ class Ball {
         this.color = color;
     }
 
+    checkCollisionWithCanvasEdges = () => {
+        if (this.x >= canvas.width - this.radius || this.x < this.radius) {
+            this.x = Math.max(this.radius, Math.min(this.x, canvas.width - this.radius));
+            this.dx *= -1;
+        }
+
+        if (this.y >= canvas.height - this.radius || this.y < this.radius) {
+            this.y = Math.max(this.radius, Math.min(this.y, canvas.height - this.radius));
+            this.dy *= -1;
+        }
+    };
+
+    update = () => {
+        this.x += this.dx;
+        this.y += this.dy;
+    };
+
     draw = () => {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
@@ -96,22 +113,9 @@ class Ball {
         ctx.stroke();
         ctx.fill();
         ctx.closePath();
+
         this.update();
-    };
-
-    update = () => {
-        this.x += this.dx;
-        this.y += this.dy;
-
-        if (this.x >= canvas.width - this.radius || this.x < this.radius) {
-            this.x = Math.max(0, Math.min(this.x, canvas.width - this.radius));
-            this.dx *= -1;
-        }
-
-        if (this.y >= canvas.height - this.radius || this.y < this.radius) {
-            this.y = Math.max(0, Math.min(this.y, canvas.height - this.radius));
-            this.dy *= -1;
-        }
+        this.checkCollisionWithCanvasEdges();
     };
 }
 
