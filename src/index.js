@@ -131,9 +131,15 @@ const createBallAttributes = () => {
     return { x, y, radius, dx, dy, color };
 };
 
-const createAndAddBall = () => {
+const createBall = () => {
     const attributes = createBallAttributes();
     const ball = new Ball(attributes);
+
+    return ball;
+};
+
+const createAndAddBall = () => {
+    const ball = createBall();
 
     balls.push(ball);
 };
