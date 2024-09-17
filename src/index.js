@@ -135,9 +135,17 @@ const drawBalls = () => {
     balls.forEach((ball) => ball.draw());
 };
 
+const updateCanvasSize = () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+};
+
 const init = () => {
     initBalls();
     setInterval(drawBalls, 30);
 };
 
+updateCanvasSize();
 init();
+
+window.addEventListener('resize', updateCanvasSize);
