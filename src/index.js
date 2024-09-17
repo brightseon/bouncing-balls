@@ -119,17 +119,27 @@ class Ball {
     };
 }
 
+const createBallAttributes = () => {
+    const x = getRandomX();
+    const y = getRandomY();
+    const radius = getRandomRadius();
+    const dx = getRandomMovement(radius);
+    const dy = getRandomMovement(radius);
+    const color = getRandomColor();
+
+    return { x, y, radius, dx, dy, color };
+};
+
+const createAndAddBall = () => {
+    const attributes = createBallAttributes();
+    const ball = new Ball(attributes);
+
+    balls.push(ball);
+};
+
 const initBalls = () => {
     for (let i = 0; i < BALL_COUNT; i++) {
-        const x = getRandomX();
-        const y = getRandomY();
-        const radius = getRandomRadius();
-        const dx = getRandomMovement(radius);
-        const dy = getRandomMovement(radius);
-        const color = getRandomColor();
-        const ball = new Ball({ x, y, radius, dx, dy, color });
-
-        balls.push(ball);
+        createAndAddBall();
     }
 };
 
