@@ -137,6 +137,7 @@ const drawBalls = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     balls.forEach((ball) => ball.draw());
+    requestAnimationFrame(drawBalls);
 };
 
 const updateCanvasSize = () => {
@@ -146,7 +147,7 @@ const updateCanvasSize = () => {
 
 const init = () => {
     initBalls();
-    setInterval(drawBalls, 30);
+    requestAnimationFrame(drawBalls);
 };
 
 updateCanvasSize();
