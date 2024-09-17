@@ -88,6 +88,8 @@ class Ball {
         this.dx = dx;
         this.dy = dy;
         this.color = color;
+        this.top = y;
+        this.gravity = radius / 100;
     }
 
     checkCollisionWithCanvasEdges = () => {
@@ -103,6 +105,7 @@ class Ball {
     };
 
     update = () => {
+        this.dy += this.gravity;
         this.x += this.dx;
         this.y += this.dy;
     };
