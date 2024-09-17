@@ -57,39 +57,56 @@ const getRandomColor = () => {
     return Object.values(BALL_COLORS)[idx];
 };
 
+class Ball {
+    constructor({ x, y, radius, dx, dy, color }) {
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+        this.dx = dx;
+        this.dy = dy;
+        this.color = color;
+    }
+
+    draw = () => {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+        ctx.fillStyle = this.color;
+        ctx.strokeStyle = this.color;
+        ctx.stroke();
+        ctx.fill();
+        ctx.closePath();
+        this.update();
+    };
+
+    update = () => {
+        this.x += this.dx;
+        this.y += this.dy;
+
+        if (this.x >= canvas.width - this.radius || this.x < this.radius) {
+            this.x = Math.max(0, Math.min(this.x, canvas.width - this.radius));
+            this.dx *= -1;
+        }
+
+        if (this.y >= canvas.height - this.radius || this.y < this.radius) {
+            this.y = Math.max(0, Math.min(this.y, canvas.height - this.radius));
+            this.dy *= -1;
+        }
+    };
+}
+
 const radius = getRandomRadius();
+const color = getRandomColor();
 let x = getRandomX();
 let y = getRandomY();
 let dx = Math.floor(radius / 2) * getRandomVelocity();
 let dy = Math.floor(radius / 2) * getRandomVelocity();
-const color = getRandomColor();
 
-const drawBall = () => {
-    ctx.beginPath();
-    ctx.arc(x, y, radius, 0, 2 * Math.PI);
-    ctx.fillStyle = color;
-    ctx.strokeStyle = color;
-    ctx.stroke();
-    ctx.fill();
-    ctx.closePath();
-
-    x += dx;
-    y += dy;
-
-    if (x >= canvas.width - radius || x < radius) {
-        x = Math.max(0, Math.min(x, canvas.width - radius));
-        dx *= -1;
-    }
-
-    if (y >= canvas.height - radius || y < radius) {
-        y = Math.max(0, Math.min(y, canvas.height - radius));
-        dy *= -1;
-    }
-};
+const ball = new Ball({ x, y, radius, dx, dy, color });
 
 const draw = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawBall();
+
+    ball.draw();
 };
 
 const init = () => {
