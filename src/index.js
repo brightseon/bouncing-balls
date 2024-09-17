@@ -57,6 +57,10 @@ const getRandomColor = () => {
     return Object.values(BALL_COLORS)[idx];
 };
 
+const getRandomMovement = (radius) => {
+    return Math.floor(radius / 2) * getRandomVelocity();
+};
+
 class Ball {
     constructor({ x, y, radius, dx, dy, color }) {
         this.x = x;
@@ -98,8 +102,8 @@ const radius = getRandomRadius();
 const color = getRandomColor();
 let x = getRandomX();
 let y = getRandomY();
-let dx = Math.floor(radius / 2) * getRandomVelocity();
-let dy = Math.floor(radius / 2) * getRandomVelocity();
+let dx = getRandomMovement(radius);
+let dy = getRandomMovement(radius);
 
 const ball = new Ball({ x, y, radius, dx, dy, color });
 
