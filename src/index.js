@@ -15,9 +15,11 @@ const BALL_COLORS = {
     RED_DARK: '#C0392B',
     TEAL: '#16A085',
 };
+const BALL_COUNT = 50;
 
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
+const balls = [];
 
 const getRandomNumber = (min, max) => {
     return Math.floor(Math.random() * (max - min)) + min;
@@ -98,23 +100,29 @@ class Ball {
     };
 }
 
-const radius = getRandomRadius();
-const color = getRandomColor();
-let x = getRandomX();
-let y = getRandomY();
-let dx = getRandomMovement(radius);
-let dy = getRandomMovement(radius);
+const initBalls = () => {
+    for (let i = 0; i < BALL_COUNT; i++) {
+        const x = getRandomX();
+        const y = getRandomY();
+        const radius = getRandomRadius();
+        const dx = getRandomMovement(radius);
+        const dy = getRandomMovement(radius);
+        const color = getRandomColor();
+        const ball = new Ball({ x, y, radius, dx, dy, color });
 
-const ball = new Ball({ x, y, radius, dx, dy, color });
+        balls.push(ball);
+    }
+};
 
-const draw = () => {
+const drawBalls = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    ball.draw();
+    balls.forEach((ball) => ball.draw());
 };
 
 const init = () => {
-    setInterval(draw, 30);
+    initBalls();
+    setInterval(drawBalls, 30);
 };
 
 init();
